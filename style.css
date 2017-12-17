@@ -83,7 +83,7 @@ p {
 #search-field::placeholder {
   color: #939598;
 }
-.parentElement {
+.cards {
   font-family: 'Open Sans', sans-serif;
 }
 #delete-btn {
