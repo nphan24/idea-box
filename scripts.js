@@ -3,17 +3,16 @@ var $bodyInput = $('#input-body');
 var $saveBtn = $('#save-btn');
 var $appendHere = $('.append-here');
 var $deleteBtn = $('#delete-btn');
-// var $upVote = $('#upvote-btn');
 
-function NewCard (title, body, id){
+function NewCard (title, body, id, quality){
   this.title = title;
   this.body = body;
   this.id = id;
-  this.quality = ' swill';
+  this.quality = quality || ' swill';
 }
 
 NewCard.prototype.prependCard = function() {
-   $appendHere.prepend(`<article class="cards">
+   $appendHere.prepend(`<article class="cards" id="${this.id}">
     <button class="top-card card-button" id="delete-btn"></button>
     <h3 class="top-card" contenteditable=true>${this.title}</h3>
     <p contenteditable=true>${this.body}</p>
@@ -31,10 +30,29 @@ $saveBtn.on('click', function(event){
   card.prependCard();
   $titleInput.val("");
   $bodyInput.val("");
+  storeCard(card);
 });
 
+function storeCard(card){
+  var stringifiedCard = JSON.stringify(card);
+  localStorage.setItem(card.id, stringifiedCard);
+}
+
+$(document).ready(getCard)
+  
+function getCard(){
+  for(var i = 0; i < localStorage.length; i++){
+  var retrieveCard = localStorage.getItem(localStorage.key(i));
+  var parseCard = JSON.parse(retrieveCard);
+  var refreshCard = new NewCard (parseCard.title, parseCard.body, parseCard.id, parseCard.quality);
+  refreshCard.prependCard()
+  }
+}
+
 $appendHere.on('click', '#delete-btn', function(event) {
+  var idRemoved = $(this).parent().attr('id');
   $(this).parent().remove();
+  localStorage.removeItem(idRemoved);
 });
 
 $appendHere.on('click', '#upvote-btn', function(event) { 
