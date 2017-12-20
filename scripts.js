@@ -56,15 +56,41 @@ $appendHere.on('click', '#delete-btn', function(event) {
 });
 
 $appendHere.on('click', '#upvote-btn', function(event) { 
-  if($(this).siblings('h6').children('span').text() === ' swill'){
-    $(this).siblings('h6').children('span').text(' plausible');
-  } else if ($(this).siblings('h6').children('span').text() === ' plausible') {
-    $(this).siblings('h6').children('span').text(' genius')}
+  var cardId = $(this).parent().attr('id');
+  var storedId = localStorage.getItem(cardId);
+  var parseId = JSON.parse(storedId);
+  var htmlText = $(this).siblings('h6').children('span');
+  if(htmlText.text() === ' swill') {
+    htmlText.text(' plausible');
+    parseId.quality = ' plausible';
+  } else if(htmlText.text() === ' plausible') {
+    htmlText.text(' genius');
+    parseId.quality = 'genius';
+  };
+  var stringedId = JSON.stringify(parseId);
+  localStorage.setItem(cardId, stringedId);
 });
 
 $appendHere.on('click', '#downvote-btn', function(event) { 
-  if($(this).siblings('h6').children('span').text() === ' genius'){
-    $(this).siblings('h6').children('span').text(' plausible');
-  } else if ($(this).siblings('h6').children('span').text() === ' plausible') {
-    $(this).siblings('h6').children('span').text(' swill')}
+  var cardId = $(this).parent().attr('id');
+  var storedId = localStorage.getItem(cardId);
+  var parseId = JSON.parse(storedId);
+  var htmlText = $(this).siblings('h6').children('span');
+  if(htmlText.text() === ' genius') {
+    htmlText.text(' plausible');
+    parseId.quality = ' plausible';
+  } else if(htmlText.text() === ' plausible') {
+    htmlText.text(' swill');
+    parseId.quality = 'swill';
+  };
+  var stringedId = JSON.stringify(parseId);
+  localStorage.setItem(cardId, stringedId);
 });
+
+
+
+
+
+
+
+
