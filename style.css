@@ -141,4 +141,7 @@ hr {
   margin-top: 3rem;
   border-color: #d1d3d4;
 }
-/*@media {}*/
+
+@media screen and (max-width: 1000pc) {
+  
+}
