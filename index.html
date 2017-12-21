@@ -10,16 +10,18 @@
   <body>
     <section class="header">
       <h1>idea<span id="header-box">box</span></h1>
-      <input type="text" name="title" placeholder="Title" class="input-boxes" id="input-title" aria-labelledby="title">
-      <br>
-      <input type="text" name="body" placeholder="Body" class="input-boxes" id="input-body" aria-labelledby="body">
-      <br>
+      <form>
+        <input type="text" name="title" placeholder="Title" class="input-boxes" id="input-title" aria-labelledby="title">
+        <br>
+        <textarea type="textarea" name="body" placeholder="Body" class="input-boxes" id="input-body" wrap="hard" aria-labelledby="body"></textarea>
+        <br>
+      </form>
       <button class="input-boxes" type="submit" id="save-btn">save</button>
     </section>
     <section class="body">
       <input type="search" name="search" placeholder="Search" id="search-field">
       <section class="append-here">
-      </section>
+    </section>
     </section>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="jquery-3.2.1.min.js"><\/script>')</script>
