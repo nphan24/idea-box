@@ -38,7 +38,7 @@ function storeCard(card){
   localStorage.setItem(card.id, stringifiedCard);
 }
 
-$(document).ready(getCard)
+$(document).ready(getCard);
   
 function getCard(){
   for(var i = 0; i < localStorage.length; i++){
@@ -87,7 +87,25 @@ $appendHere.on('click', '#downvote-btn', function(event) {
   localStorage.setItem(cardId, stringedId);
 });
 
+$appendHere.on('blur', 'h3', function() {
+  var cardId = $(this).parent().attr('id');
+  var storedId = localStorage.getItem(cardId);
+  var parseObject = JSON.parse(storedId);
+  var titleText = $(this).text();
+  parseObject.title = titleText;
+  var stringTitle = JSON.stringify(parseObject);
+  localStorage.setItem(cardId, stringTitle);
+});
 
+$appendHere.on('blur', 'p', function (){
+  var cardId = $(this).parent().attr('id');
+  var storedId = localStorage.getItem(cardId);
+  var parseObject = JSON.parse(storedId);
+  var paraObject = $(this).text();
+  parseObject.body = paraObject;
+  var stringBody = JSON.stringify(parseObject);
+  localStorage.setItem(cardId, stringBody);
+});
 
 
 
