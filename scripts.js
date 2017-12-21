@@ -59,13 +59,14 @@ $appendHere.on('click', '#upvote-btn', function(event) {
   var cardId = $(this).parent().attr('id');
   var storedId = localStorage.getItem(cardId);
   var parseId = JSON.parse(storedId);
+  console.log(parseId)
   var htmlText = $(this).siblings('h6').children('span');
   if(htmlText.text() === ' swill') {
     htmlText.text(' plausible');
     parseId.quality = ' plausible';
   } else if(htmlText.text() === ' plausible') {
     htmlText.text(' genius');
-    parseId.quality = 'genius';
+    parseId.quality = ' genius';
   };
   var stringedId = JSON.stringify(parseId);
   localStorage.setItem(cardId, stringedId);
@@ -81,7 +82,7 @@ $appendHere.on('click', '#downvote-btn', function(event) {
     parseId.quality = ' plausible';
   } else if(htmlText.text() === ' plausible') {
     htmlText.text(' swill');
-    parseId.quality = 'swill';
+    parseId.quality = ' swill';
   };
   var stringedId = JSON.stringify(parseId);
   localStorage.setItem(cardId, stringedId);
