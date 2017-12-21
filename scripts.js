@@ -107,7 +107,6 @@ $appendHere.on('blur', 'p', function (){
   localStorage.setItem(cardId, stringBody);
 });
 
-;
 
 
 
